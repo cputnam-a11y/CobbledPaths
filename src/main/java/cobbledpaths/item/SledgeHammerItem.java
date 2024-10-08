@@ -1,5 +1,6 @@
 package cobbledpaths.item;
 
+import cobbledpaths.CobbledPaths;
 import cobbledpaths.block.BetterPathBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

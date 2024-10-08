@@ -7,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -17,10 +16,9 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -58,6 +56,7 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
+    @Unique
     private void cobbledpaths$removeStickySpeed() {
         EntityAttributeInstance movementSpeed = ((LivingEntity)(Object)this).getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         if (movementSpeed != null) {
@@ -67,6 +66,7 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
+    @Unique
     private void cobbledpaths$checkStickySpeed() {
         if (!this.getSteppingBlockState().isAir()) {
             if ((Object)this instanceof PlayerEntity player) {

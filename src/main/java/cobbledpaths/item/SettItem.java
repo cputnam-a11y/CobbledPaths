@@ -22,6 +22,7 @@ public class SettItem extends Item {
     private final Supplier<? extends Block> createdBlock;
     private final List<Supplier<? extends Block>> originalBlocks;
 
+    @SafeVarargs
     public SettItem(Settings settings, Supplier<? extends Block> createdBlock, Supplier<? extends Block>... originalBlocks) {
         super(settings);
         this.createdBlock = createdBlock;

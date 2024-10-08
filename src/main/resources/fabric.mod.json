@@ -3,9 +3,9 @@
 	"id": "cobbledpaths",
 	"version": "${version}",
 	"name": "CobbledPaths",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "I Refuse",
 	"authors": [
-		"Me!"
+		"LukeBlemish"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -18,19 +18,12 @@
 		"main": [
 			"cobbledpaths.CobbledPaths"
 		],
-		"client": [
-			"cobbledpaths.CobbledPathsClient"
-		],
 		"fabric-datagen": [
 			"cobbledpaths.CobbledPathsDataGenerator"
 		]
 	},
 	"mixins": [
-		"cobbledpaths.mixins.json",
-		{
-			"config": "cobbledpaths.client.mixins.json",
-			"environment": "client"
-		}
+		"cobbledpaths.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.5",

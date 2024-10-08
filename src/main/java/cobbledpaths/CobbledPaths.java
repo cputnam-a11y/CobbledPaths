@@ -5,15 +5,16 @@ import cobbledpaths.item.SettItem;
 import cobbledpaths.item.SledgeHammerItem;
 import cobbledpaths.item.SpadeItem;
 import net.fabricmc.api.ModInitializer;
-
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
@@ -132,7 +133,8 @@ public class CobbledPaths implements ModInitializer {
 		SLEDGEHAMMER.transforms.put(PURPUR_PATH, CRACKED_PURPUR_PATH);
 	}
 
-	static <T extends BetterPathBlock> SettItem registerSett(String name, Supplier<T> path, Supplier<? extends Block>... sources) {
+	@SafeVarargs
+    static <T extends BetterPathBlock> SettItem registerSett(String name, Supplier<T> path, Supplier<? extends Block>... sources) {
 		SettItem item = new SettItem(new Item.Settings(), path, sources);
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, name), item);
         return item;
@@ -142,7 +144,28 @@ public class CobbledPaths implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		setupTransforms();
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+				entries.add(COBBLE, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+				entries.add(STONE_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+				entries.add(DEEPSLATE_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
 
+				entries.add(ICE_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+				entries.add(BLUE_ICE_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+
+				entries.add(NETHER_BRICK_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+				entries.add(BLACKSTONE_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+
+				entries.add(OBSIDIAN_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+				entries.add(PURPUR_SETT, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+
+				entries.add(MOSS_BALL, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+		});
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+				entries.add(SPADE, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+				entries.add(SLEDGEHAMMER, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+		});
 		LOGGER.info("Hello Fabric world!");
 	}
 }
