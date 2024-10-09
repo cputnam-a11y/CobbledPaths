@@ -2,6 +2,7 @@ package cobbledpaths.mixin;
 
 import cobbledpaths.CobbledPaths;
 import cobbledpaths.block.BetterPathBlock;
+import cobbledpaths.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -41,7 +42,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "baseTick()V", at = @At("HEAD"))
     private void cobbledpaths$baseTick(CallbackInfo ci) {
         BlockState state = this.getWorld().getBlockState(this.getBlockPos());
-        if (state.isOf(CobbledPaths.PURPUR_PATH) || state.isOf(CobbledPaths.CRACKED_PURPUR_PATH)) {
+        if (state.isOf(ModBlocks.PURPUR_PATH) || state.isOf(ModBlocks.CRACKED_PURPUR_PATH)) {
             if (!this.getActiveStatusEffects().containsKey(StatusEffects.JUMP_BOOST) || this.getActiveStatusEffects().get(StatusEffects.JUMP_BOOST).getAmplifier() < 2) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 10, 2, false, false, false));
             }

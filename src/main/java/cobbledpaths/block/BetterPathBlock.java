@@ -3,6 +3,7 @@ package cobbledpaths.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirtPathBlock;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
@@ -92,6 +93,11 @@ public class BetterPathBlock extends DirtPathBlock {
     }
 
     @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return super.getPickStack(world, pos, state);
+    }
+
+    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         state = updateBlockState(state, world, pos);
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -109,6 +115,12 @@ public class BetterPathBlock extends DirtPathBlock {
         boolean e = levelReader.getBlockState(ePos.down()).getBlock() instanceof DirtPathBlock;
         boolean w = levelReader.getBlockState(wPos.down()).getBlock() instanceof DirtPathBlock;
         return blockState.with(NORTH, n && hasBelow).with(SOUTH, s && hasBelow).with(EAST, e && hasBelow).with(WEST, w && hasBelow);
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        updateBlockState(state, world, pos);
     }
 
     @Override

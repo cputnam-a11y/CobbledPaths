@@ -2,6 +2,7 @@ package cobbledpaths.item;
 
 import cobbledpaths.CobbledPaths;
 import cobbledpaths.block.BetterPathBlock;
+import cobbledpaths.tag.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -29,7 +30,7 @@ public class SledgeHammerItem extends Item {
 
     @Override
     public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return stack.getRegistryEntry().isIn(CobbledPaths.SLEDGEHAMMER_REPAIR_TAG) || super.canRepair(stack, ingredient);
+        return stack.getRegistryEntry().isIn(ModItemTags.SLEDGEHAMMER_REPAIR_TAG) || super.canRepair(stack, ingredient);
     }
 
     @Override

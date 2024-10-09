@@ -1,6 +1,7 @@
 package cobbledpaths.item;
 
 import cobbledpaths.CobbledPaths;
+import cobbledpaths.tag.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -23,7 +24,7 @@ public class SpadeItem extends Item {
 
     @Override
     public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return stack.getRegistryEntry().isIn(CobbledPaths.SPADE_REPAIR_TAG) || super.canRepair(stack, ingredient);
+        return stack.getRegistryEntry().isIn(ModItemTags.SPADE_REPAIR_TAG) || super.canRepair(stack, ingredient);
     }
 
     @Override
@@ -38,8 +39,8 @@ public class SpadeItem extends Item {
             Block blockToPlace = Block.getBlockFromItem(offHandItem.getItem());
             Item itemToGet = blockState.getBlock().asItem();
             if (blockToPlace != null && itemToGet != null &&
-                    Registries.ITEM.getEntry(itemToGet).isIn(CobbledPaths.SPADE_COMPATIBLE_TAG) &&
-                    offHandItem.getRegistryEntry().isIn(CobbledPaths.SPADE_COMPATIBLE_TAG)) {
+                    Registries.ITEM.getEntry(itemToGet).isIn(ModItemTags.SPADE_COMPATIBLE_TAG) &&
+                    offHandItem.getRegistryEntry().isIn(ModItemTags.SPADE_COMPATIBLE_TAG)) {
                 world.playSound(player, pos, SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 if (!world.isClient) {
                     BlockState outState = blockToPlace.getDefaultState();
