@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#minecraft:dirt",
+      "required": false
+    },
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:end_stone",
+    "minecraft:gravel",
+    "minecraft:snow_block"
+  ]
+}
