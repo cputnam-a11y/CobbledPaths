@@ -1,18 +1,15 @@
 package cobbledpaths.datagen;
 
-import cobbledpaths.block.BetterPathBlock;
 import cobbledpaths.block.ModBlocks;
+import cobbledpaths.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Model;
 import net.minecraft.data.client.Models;
+import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-
-import java.util.Optional;
 
 import static cobbledpaths.CobbledPaths.id;
 
@@ -47,6 +44,22 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+        registerGeneratedItem(itemModelGenerator, ModItems.MOSS_BALL);
+        registerGeneratedItem(itemModelGenerator, ModItems.SPADE);
+        registerGeneratedItem(itemModelGenerator, ModItems.SLEDGEHAMMER);
+
+        registerGeneratedItem(itemModelGenerator, ModItems.COBBLE);
+        registerGeneratedItem(itemModelGenerator, ModItems.STONE_SETT);
+        registerGeneratedItem(itemModelGenerator, ModItems.DEEPSLATE_SETT);
+
+        registerGeneratedItem(itemModelGenerator, ModItems.ICE_SETT);
+        registerGeneratedItem(itemModelGenerator, ModItems.BLUE_ICE_SETT);
+
+        registerGeneratedItem(itemModelGenerator, ModItems.NETHER_BRICK_SETT);
+        registerGeneratedItem(itemModelGenerator, ModItems.BLACKSTONE_SETT);
+
+        registerGeneratedItem(itemModelGenerator, ModItems.OBSIDIAN_SETT);
+        registerGeneratedItem(itemModelGenerator, ModItems.PURPUR_SETT);
     }
     @SuppressWarnings("deprecation")
     private static void registerSimpleBlockItem(BlockStateModelGenerator generator, Block block) {
@@ -56,5 +69,8 @@ public class ModModelProvider extends FabricModelProvider {
     @SuppressWarnings("SameParameterValue")
     private static void registerSimpleBlockItem(BlockStateModelGenerator generator, Block block, String blockModel) {
         generator.registerParentedItemModel(block, id("block/" + blockModel));
+    }
+    private static void registerGeneratedItem(ItemModelGenerator generator, Item item) {
+        generator.register(item, Models.GENERATED);
     }
 }
