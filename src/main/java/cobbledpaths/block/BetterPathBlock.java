@@ -12,8 +12,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -57,9 +57,9 @@ public class BetterPathBlock extends DirtPathBlock {
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
-            return super.onUse(state, world, pos, player, hand, hit);
+            return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
         }
         ItemStack heldItemStack = player.getStackInHand(hand);
         Item heldItem = heldItemStack.getItem();
@@ -71,9 +71,9 @@ public class BetterPathBlock extends DirtPathBlock {
             if (!player.isCreative()) {
                 heldItemStack.decrement(1);
             }
-            return ActionResult.SUCCESS;
+            return ItemActionResult.SUCCESS;
         } else {
-            return super.onUse(state, world, pos, player, hand, hit);
+            return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
         }
     }
 
@@ -90,11 +90,6 @@ public class BetterPathBlock extends DirtPathBlock {
 
     public static boolean hasBelow(BlockView blockGetter, BlockPos blockPos) {
         return isFaceFullSquare(blockGetter.getBlockState(blockPos).getSidesShape(blockGetter, blockPos), Direction.UP);
-    }
-
-    @Override
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return super.getPickStack(world, pos, state);
     }
 
     @Override

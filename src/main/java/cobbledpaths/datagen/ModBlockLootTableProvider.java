@@ -3,22 +3,21 @@ package cobbledpaths.datagen;
 import cobbledpaths.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
-import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ExplosionDecayLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
-    public ModBlockLootTableProvider(FabricDataOutput dataOutput) {
-        super(dataOutput);
+    public ModBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
     }
 
     @Override
@@ -30,7 +29,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
                         LootPool.builder()
                                 .with(
                                         AlternativeEntry.builder(
-                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(WITH_SILK_TOUCH),
+                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(createSilkTouchCondition()),
                                                 ItemEntry.builder(Items.SNOWBALL)
                                                         .apply(
                                                                 SetCountLootFunction
@@ -45,7 +44,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
                         LootPool.builder()
                                 .with(
                                         AlternativeEntry.builder(
-                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(WITH_SILK_TOUCH),
+                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(createSilkTouchCondition()),
                                                 ItemEntry.builder(Items.SNOWBALL)
                                                         .apply(
                                                                 SetCountLootFunction
@@ -60,7 +59,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
                         LootPool.builder()
                                 .with(
                                         AlternativeEntry.builder(
-                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(WITH_SILK_TOUCH),
+                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(createSilkTouchCondition()),
                                                 ItemEntry.builder(Items.SNOWBALL)
                                                         .apply(
                                                                 SetCountLootFunction
@@ -75,7 +74,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
                         LootPool.builder()
                                 .with(
                                         AlternativeEntry.builder(
-                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(WITH_SILK_TOUCH),
+                                                ItemEntry.builder(Items.SNOW_BLOCK).conditionally(createSilkTouchCondition()),
                                                 ItemEntry.builder(Items.SNOWBALL)
                                                         .apply(
                                                                 SetCountLootFunction

@@ -1,22 +1,20 @@
 package cobbledpaths.block;
 
-import cobbledpaths.CobbledPaths;
 import cobbledpaths.item.ModItems;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 
 import java.util.function.Function;
 
-import static cobbledpaths.CobbledPaths.MOD_ID;
 import static cobbledpaths.CobbledPaths.id;
 
 public class ModBlocks {
@@ -190,7 +188,7 @@ public class ModBlocks {
                                 .Settings
                                 .create()
                                 .mapColor(MapColor.STONE_GRAY)
-                                .instrument(Instrument.BASEDRUM)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
                                 .sounds(BlockSoundGroup.STONE)
                                 .strength(0.70f)
                                 .blockVision(Blocks::always)
@@ -209,7 +207,7 @@ public class ModBlocks {
                                 .Settings
                                 .create()
                                 .mapColor(MapColor.STONE_GRAY)
-                                .instrument(Instrument.BASEDRUM)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
                                 .sounds(BlockSoundGroup.STONE)
                                 .strength(0.75f)
                                 .blockVision(Blocks::always)
@@ -264,7 +262,7 @@ public class ModBlocks {
                                 .Settings
                                 .create()
                                 .mapColor(MapColor.STONE_GRAY)
-                                .instrument(Instrument.BASEDRUM)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
                                 .strength(0.70f)
                                 .blockVision(Blocks::always)
                                 .suffocates(Blocks::always)
@@ -282,7 +280,7 @@ public class ModBlocks {
                                 .Settings
                                 .create()
                                 .mapColor(MapColor.STONE_GRAY)
-                                .instrument(Instrument.BASEDRUM)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
                                 .strength(0.75f)
                                 .blockVision(Blocks::always)
                                 .suffocates(Blocks::always)
@@ -300,7 +298,7 @@ public class ModBlocks {
                                 .Settings
                                 .create()
                                 .mapColor(MapColor.STONE_GRAY)
-                                .instrument(Instrument.BASEDRUM)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
                                 .strength(1.00f)
                                 .blockVision(Blocks::always)
                                 .suffocates(Blocks::always)
@@ -318,7 +316,7 @@ public class ModBlocks {
                                 .Settings
                                 .create()
                                 .mapColor(MapColor.STONE_GRAY)
-                                .instrument(Instrument.BASEDRUM)
+                                .instrument(NoteBlockInstrument.BASEDRUM)
                                 .strength(0.75f)
                                 .blockVision(Blocks::always)
                                 .suffocates(Blocks::always)

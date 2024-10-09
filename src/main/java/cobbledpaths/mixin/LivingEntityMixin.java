@@ -15,6 +15,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -83,13 +84,13 @@ public abstract class LivingEntityMixin extends Entity {
                     return;
                 }
                 double completeModifier = movementSpeed.getBaseValue() * (modifier - 1.0F);
-                movementSpeed.addTemporaryModifier(new EntityAttributeModifier(CobbledPaths.STICKY_SPEED_UUID, "Path speed boost", completeModifier, EntityAttributeModifier.Operation.ADDITION));
+                movementSpeed.addTemporaryModifier(new EntityAttributeModifier(CobbledPaths.STICKY_SPEED_UUID, completeModifier, EntityAttributeModifier.Operation.ADD_VALUE));
             }
         }
     }
 
     @Inject(method = "applyMovementEffects", at = @At("TAIL"))
-    private void cobbledpaths$$blockChange(BlockPos pos, CallbackInfo ci) {
+    private void cobbledpaths$$blockChange(ServerWorld world, BlockPos pos, CallbackInfo ci) {
         if (this.shouldRemoveSoulSpeedBoost(this.getSteppingBlockState())) {
             this.cobbledpaths$removeStickySpeed();
         }

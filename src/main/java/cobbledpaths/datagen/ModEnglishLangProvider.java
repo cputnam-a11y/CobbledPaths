@@ -2,18 +2,19 @@ package cobbledpaths.datagen;
 
 import cobbledpaths.block.ModBlocks;
 import cobbledpaths.item.ModItems;
-import cobbledpaths.itemgroup.ModItemGroups;
-import cobbledpaths.tag.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModEnglishLangProvider extends FabricLanguageProvider {
-    public ModEnglishLangProvider(FabricDataOutput dataOutput) {
-        super(dataOutput, "en_us");
+    public ModEnglishLangProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, "en_us", registryLookup);
     }
 
     @Override
-    public void generateTranslations(TranslationBuilder translationBuilder) {
+    public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         // itemgroup translations
         translationBuilder.add("cobbledpaths.itemgroup.cobbledpaths", "Cobbled Paths");
         // item translations

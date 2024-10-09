@@ -64,7 +64,7 @@ public class ModModelProvider extends FabricModelProvider {
     @SuppressWarnings("deprecation")
     private static void registerSimpleBlockItem(BlockStateModelGenerator generator, Block block) {
         Identifier parentIdentifier = block.getRegistryEntry().registryKey().getValue();
-        generator.registerParentedItemModel(block, new Identifier(parentIdentifier.getNamespace(), "block/" + parentIdentifier.getPath()));
+        generator.registerParentedItemModel(block, Identifier.of(parentIdentifier.getNamespace(), "block/" + parentIdentifier.getPath()));
     }
     @SuppressWarnings("SameParameterValue")
     private static void registerSimpleBlockItem(BlockStateModelGenerator generator, Block block, String blockModel) {

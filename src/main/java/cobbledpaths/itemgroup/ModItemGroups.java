@@ -1,6 +1,5 @@
 package cobbledpaths.itemgroup;
 
-import cobbledpaths.block.BetterPathBlock;
 import cobbledpaths.block.ModBlocks;
 import cobbledpaths.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;

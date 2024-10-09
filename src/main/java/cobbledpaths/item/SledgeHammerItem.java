@@ -1,6 +1,5 @@
 package cobbledpaths.item;
 
-import cobbledpaths.CobbledPaths;
 import cobbledpaths.block.BetterPathBlock;
 import cobbledpaths.tag.ModItemTags;
 import net.minecraft.block.Block;
@@ -35,16 +34,10 @@ public class SledgeHammerItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        /*
-        * Level level = context.level
-        BlockPos blockPos = context.clickedPos
-        BlockState blockState = level.getBlockState(blockPos)
-        * */
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
         BlockState state = world.getBlockState(pos);
-        if (context.getSide() == Direction.DOWN)
-            return ActionResult.PASS;
+        if (context.getSide() == Direction.DOWN) return ActionResult.PASS;
         PlayerEntity player = context.getPlayer();
         Block outBlock = transforms.get(state.getBlock());
         if (outBlock != null) {
@@ -54,11 +47,9 @@ public class SledgeHammerItem extends Item {
                 if (outBlock instanceof BetterPathBlock) {
                     outState = BetterPathBlock.updateBlockState(outState, world, pos);
                 }
-                world.setBlockState(pos, outState, Block.field_31022);
+                world.setBlockState(pos, outState, Block.NOTIFY_ALL_AND_REDRAW);
                 if (player != null) {
-                    context.getStack().damage(1, player, (contextEntity) -> {
-                        contextEntity.sendEquipmentBreakStatus(context.getHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-                    });
+                    context.getStack().damage(1, player, context.getHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
                 }
             }
             return ActionResult.success(world.isClient);

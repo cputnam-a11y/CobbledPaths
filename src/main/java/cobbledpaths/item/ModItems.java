@@ -7,15 +7,15 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
 
-import static cobbledpaths.CobbledPaths.MOD_ID;
+import static cobbledpaths.CobbledPaths.id;
+
 public class ModItems {
-    public static final Item MOSS_BALL = Registry.register(Registries.ITEM, new Identifier(MOD_ID, "moss_ball"), new Item(new Item.Settings()));
-    public static final SpadeItem SPADE = Registry.register(Registries.ITEM, new Identifier(MOD_ID, "spade"), new SpadeItem(new Item.Settings().maxDamage(1000)));
-    public static final SledgeHammerItem SLEDGEHAMMER = Registry.register(Registries.ITEM, new Identifier(MOD_ID, "sledgehammer"), new SledgeHammerItem(new Item.Settings().maxDamage(512)));
+    public static final Item MOSS_BALL = Registry.register(Registries.ITEM, id("moss_ball"), new Item(new Item.Settings()));
+    public static final SpadeItem SPADE = Registry.register(Registries.ITEM, id("spade"), new SpadeItem(new Item.Settings().maxDamage(1000)));
+    public static final SledgeHammerItem SLEDGEHAMMER = Registry.register(Registries.ITEM, id("sledgehammer"), new SledgeHammerItem(new Item.Settings().maxDamage(512)));
 
     public static final SettItem COBBLE = registerSett("cobble", () -> ModBlocks.COBBLED_PATH, () -> Blocks.DIRT_PATH);
     public static final SettItem STONE_SETT = registerSett("stone_sett", () -> ModBlocks.STONE_PATH, () -> Blocks.DIRT_PATH);
@@ -36,7 +36,7 @@ public class ModItems {
     @SafeVarargs
     static <T extends BetterPathBlock> SettItem registerSett(String name, Supplier<T> path, Supplier<? extends Block>... sources) {
         SettItem item = new SettItem(new Item.Settings(), path, sources);
-        Registry.register(Registries.ITEM, new Identifier(MOD_ID, name), item);
+        Registry.register(Registries.ITEM, id( name), item);
         return item;
     }
     static void setupTransforms() {

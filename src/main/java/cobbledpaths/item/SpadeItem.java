@@ -1,6 +1,5 @@
 package cobbledpaths.item;
 
-import cobbledpaths.CobbledPaths;
 import cobbledpaths.tag.ModItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -44,12 +43,12 @@ public class SpadeItem extends Item {
                 world.playSound(player, pos, SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 if (!world.isClient) {
                     BlockState outState = blockToPlace.getDefaultState();
-                    world.setBlockState(pos, outState, Block.field_31022);
+                    world.setBlockState(pos, outState, Block.NOTIFY_ALL_AND_REDRAW);
                     if (!player.isCreative()) {
                         offHandItem.decrement(1);
                         player.giveItemStack(new ItemStack(itemToGet, 1));
                     }
-                    context.getStack().damage(1, player, contextEntity -> contextEntity.sendEquipmentBreakStatus(context.getHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND));
+                    context.getStack().damage(1, player, context.getHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
                 }
                 return ActionResult.success(world.isClient);
             }

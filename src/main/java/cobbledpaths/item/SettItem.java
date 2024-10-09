@@ -1,5 +1,6 @@
 package cobbledpaths.item;
 
+import cobbledpaths.CobbledPaths;
 import cobbledpaths.block.BetterPathBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -38,14 +39,16 @@ public class SettItem extends Item {
             return ActionResult.PASS;
         PlayerEntity player = context.getPlayer();
         if (originalBlocks.stream().anyMatch(block -> blockState.isOf(block.get()))) {
+            CobbledPaths.LOGGER.info("Creating block");
             Block toCreate = createdBlock.get();
+            CobbledPaths.LOGGER.info("Block created");
             if (toCreate instanceof BetterPathBlock) {
                 world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 if (!world.isClient) {
                     BlockState outState = toCreate.getDefaultState();
                     world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, outState));
                     outState = BetterPathBlock.updateBlockState(outState, world, pos);
-                    world.setBlockState(pos, outState, Block.field_31022);
+                    world.setBlockState(pos, outState, Block.NOTIFY_ALL_AND_REDRAW);
                     context.getStack().decrement(1);
                 }
                 return ActionResult.success(world.isClient);
