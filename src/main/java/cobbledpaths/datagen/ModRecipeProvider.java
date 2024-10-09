@@ -24,6 +24,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.BLACKSTONE), RecipeCategory.MISC, ModItems.BLACKSTONE_SETT, 16)
                 .criterion("has_blackstone", conditionsFromItem(Items.BLACKSTONE))
                 .offerTo(exporter);
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.STONE), RecipeCategory.MISC, ModItems.STONE_SETT, 16)
+                .criterion("has_stone", conditionsFromItem(Items.STONE))
+                .offerTo(exporter);
         SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.BLUE_ICE), RecipeCategory.MISC, ModItems.BLUE_ICE_SETT, 16)
                 .criterion("has_blue_ice", conditionsFromItem(Items.BLUE_ICE))
                 .offerTo(exporter);

@@ -9,6 +9,9 @@ import cobbledpaths.item.SpadeItem;
 import cobbledpaths.itemgroup.ModItemGroups;
 import cobbledpaths.tag.ModItemTags;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
@@ -20,6 +23,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -42,7 +46,6 @@ public class CobbledPaths implements ModInitializer {
         ModItemGroups.init();
         ModItemTags.init();
     }
-
     public static Identifier id(String path) {
         return new Identifier(MOD_ID, path);
     }

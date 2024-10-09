@@ -13,6 +13,7 @@ public class CobbledPathsDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModItemTagProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
+		pack.addProvider(ModBlockLootTableProvider::new);
 	}
 
 }
