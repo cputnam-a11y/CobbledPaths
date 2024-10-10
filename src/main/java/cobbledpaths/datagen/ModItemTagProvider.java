@@ -28,7 +28,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                         Items.SOUL_SOIL,
                         Items.END_STONE,
                         Items.GRAVEL,
-                        Items.SNOW_BLOCK
+                        Items.SNOW_BLOCK,
+                        Items.DIRT,
+                        Items.COARSE_DIRT,
+                        Items.PODZOL,
+                        Items.GRASS_BLOCK,
+                        Items.MYCELIUM
                 );
     }
 }

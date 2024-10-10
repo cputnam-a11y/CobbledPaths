@@ -33,13 +33,17 @@ public abstract class LivingEntityMixin extends Entity {
         super(entityType, level);
     }
 
-    @Shadow
-    protected abstract boolean shouldRemoveSoulSpeedBoost(BlockState state);
-
     @Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
 
     @Shadow public abstract Map<StatusEffect, StatusEffectInstance> getActiveStatusEffects();
 
+    @Shadow public abstract boolean isFallFlying();
+    @Unique
+    private boolean shouldRemoveSoulSpeedBoost(BlockState landingState) {
+        return !landingState.isAir() || this.isFallFlying();
+    }
+
+    @SuppressWarnings("SuspiciousMethodCalls")
     @Inject(method = "baseTick()V", at = @At("HEAD"))
     private void cobbledpaths$baseTick(CallbackInfo ci) {
         BlockState state = this.getWorld().getBlockState(this.getBlockPos());
