@@ -1,0 +1,18 @@
+{
+  "values": [
+    {
+      "id": "#minecraft:dirt",
+      "required": false
+    },
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:end_stone",
+    "minecraft:gravel",
+    "minecraft:snow_block",
+    "minecraft:dirt",
+    "minecraft:coarse_dirt",
+    "minecraft:podzol",
+    "minecraft:grass_block",
+    "minecraft:mycelium"
+  ]
+}
